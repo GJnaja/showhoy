@@ -30,6 +30,7 @@ class wp_showhoy_plugin extends WP_Widget {
 ?>
 
 <?php
+
 function sshowhoy($atts, $content = null ) {
   
     //echo '<div id="my-plugin-value-container"></div>';
@@ -37,7 +38,10 @@ function sshowhoy($atts, $content = null ) {
         'width' => '100%',
         'height' => '650',
     ), $atts );
-    return '<iframe src="http://localhost/showhoy/wp-content/plugins/sh-plugin/show.php" width='.$a['width'].' height='.$a['height'].' frameborder=0></iframe>';
+    //return '<iframe href="http://localhost/showhoy/wp-content/plugins/sh-plugin/show.php" width='.$a['width'].' height='.$a['height'].' frameborder=0></iframe>';
+    //include 'show.php';
+    return '<iframe src="/wp-content/plugins/sh-plugin/show.php" width='.$a['width'].' height='.$a['height'].' frameborder=0></iframe>';
+    
 }
 
 function sshowhoy2($atts, $content = null ) {
@@ -47,7 +51,7 @@ function sshowhoy2($atts, $content = null ) {
       'width' => '100%',
       'height' => '100%',
   ), $atts );
-  return '<iframe src=http://localhost/showhoy/wp-content/plugins/sh-plugin/checker.php width='.$a['width'].' height='.$a['height'].' frameborder=0></iframe>';
+  return '<iframe src="/wp-content/plugins/sh-plugin/checker.php" width='.$a['width'].' height='.$a['height'].' frameborder=0></iframe>';
 }
 
 function rssshowhoy($atts, $content = null ) {

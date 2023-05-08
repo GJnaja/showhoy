@@ -70,8 +70,51 @@
            
         ?>
     </head>
+    <style>
+        .myDiv {
+            border: 2px outset #3b3b3b;
+            background: rgb(0,12,78);
+            background: radial-gradient(circle, rgba(0,12,78,1) 0%, rgba(1,0,34,1) 100%);
+            color: white;
+            padding-top: 6px;
+            padding-bottom: 6px;
+        }
 
-    <body class="home blog  wide">
+        .myDivH {
+            background: rgb(9,9,121);
+            background: linear-gradient(0deg, rgba(9,9,121,1) 0%, rgba(0,43,137,1) 49%, rgba(9,9,121,1) 100%);
+            padding: 10px;
+        }
+
+        .myBox {
+            font-size: 24px;
+            color: white;
+            background: rgb(0,39,255);
+            background: radial-gradient(circle, rgba(0,39,255,1) 0%, rgba(1,0,34,1) 100%); 
+            padding-top: 25px;
+            padding-bottom: 25px;     
+        }
+
+        .btnsh{
+            color: white;
+            background: rgb(19,56,134);
+            background: linear-gradient(14deg, rgba(19,56,134,1) 0%, rgba(7,65,189,1) 52%, rgba(3,3,73,1) 94%);
+        }
+
+        .homesh{
+            background: rgb(224,224,224);
+            background: linear-gradient(247deg, rgba(224,224,224,1) 5%, rgba(255,255,255,1) 31%, rgba(255,255,255,1) 69%, rgba(226,226,226,1) 99%);
+        }
+
+        .md-text{
+            font-size: 18px;
+        }
+
+        .sm-text{
+            font-size: 12px;
+        }
+    </style>
+    <body class="homesh blog  wide">
         <div id="page" class="hfeed site">
             <div id="main" class="clearfix">
                 <?php
@@ -99,7 +142,7 @@
                                             <?php
                                                 echo "<option value='' selected>ปี</option>";
                                                 // Generate options for year dropdown
-                                                for ($i = $yearNow; $i > 2548; $i--) {  
+                                                for ($i = $yearNow; $i > 2547; $i--) {  
                                                                            //หาค่าปีแล้วดึงมาใส่ซะ
                                                     if($i == $yearNow){
                                                         //$j = $i - 543;
@@ -151,7 +194,7 @@
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                            <button type="submit" name="check_lotto_btn" value="submit" title="ดูเลขถูกรางวัล" class="btn btn-primary">ดูเลขถูกรางวัล</button>
+                                            <button type="submit" name="check_lotto_btn" value="submit" title="ดูเลขถูกรางวัล" class="btnsh">ดูเลขถูกรางวัล</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -169,7 +212,9 @@
                                             $lastLotto = count($responseYear[$yearNow])-1;
                                             $datas[$yearNow][$lastLotto] = list_price_win($yearNow, $rpMonth[$yearNow][$lastLotto], $rpDay[$yearNow][$lastLotto]);
                                             $dataNow = $datas[$yearNow][$lastLotto];
-
+                                            //print_r($dataNow);
+                                            //echo $rpDay[$yearNow][$lastLotto];
+                                            //echo $rpMonth[$yearNow][$lastLotto];
 
                                             // if(isset($_POST['check_lotto_btn'])){
                                                 
@@ -201,10 +246,25 @@
                                                                  $AmonthTh = $monthTh[$month-1];
                                                                  $year = $_POST['year'];
                                                                  //DEbug
-                                                                 ?><h2><?php
-                                                                 echo 'งวด '.$day."-".$AmonthTh."-".$year;   
+                                                                 ?><td class="myBox"><?php
+                                                                 echo 'งวด '.$day." ".$AmonthTh." ".$year;   
                                                                  $dataNow = list_price_win($year,$month,$day); 
-                                                                 ?></h2><?php 
+                                                                 ?></td><?php 
+                                                            }else{
+                                                                $daymonth[0] = $rpDay[$yearNow][$lastLotto];
+                                                                $daymonth[1] = $rpMonth[$yearNow][$lastLotto];
+                                                                //$daymonth = explode(",", $_POST['day']);
+                                                                //$daymonth = explode("-", $days);
+                                                                //print_r($daymonth);
+                                                                $day = intval($daymonth[0]);
+                                                                $month = intval($daymonth[1]);
+                                                                $AmonthTh = $monthTh[$month-1];
+                                                                $year = $yearNow;
+                                                                //DEbug
+                                                                ?><td class="myBox"><?php
+                                                                echo 'งวด '.$day." ".$AmonthTh." ".$year;   
+                                                                //$dataNow = list_price_win($year,$month,$day); 
+                                                                ?></td><?php 
                                                             }
                                                         ?>
                                                     </caption>
@@ -212,91 +272,91 @@
                                             </div>
                                             <div class="table-responsive">
                                                 <table id="reward1" class="easy-table easy-table-default table">
-                                                    <caption>
-                                                        รางวัลที่ 1<br/>มี 1 รางวัลๆละ 6,000,000 บาท
+                                                    <caption class="myDivH">
+                                                        <div class="md-text">รางวัลที่ 1</div><br/><div class="sm-text">มี 1 รางวัลๆละ 6,000,000 บาท</div>
                                                     </caption>
                                                     <tbody id="info">
                                                         <tr>
-                                                            <td><?php echo $dataNow[0][1]; ?></td>
+                                                            <td class="myDiv"><?php echo $dataNow[0][1]; ?></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
                                             <div class="table-responsive">
                                                 <table id="nearreward1" class="easy-table easy-table-default table">
-                                                    <caption>
-                                                        รางวัลข้างเคียงรางวัลที่ 1<br/>มี 2 รางวัลๆละ 100,000 บาท
+                                                    <caption class="myDivH">
+                                                        <div class="md-text">รางวัลข้างเคียงรางวัลที่ 1</div><br/><div class="sm-text">มี 2 รางวัลๆละ 100,000 บาท</div>
                                                     </caption>
                                                     <tbody>
                                                         <tr>
-                                                            <td><?php echo $dataNow[0][1]-'1'; ?></td>
-                                                            <td><?php echo $dataNow[0][1]+'1'; ?></td>
+                                                            <td class="myDiv"><?php echo $dataNow[0][1]-'1'; ?></td>
+                                                            <td class="myDiv"><?php echo $dataNow[0][1]+'1'; ?></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
                                             <div class="table-responsive">
                                                 <table id="reward2" class="easy-table easy-table-default table">
-                                                    <caption>
-                                                        ผลสลาก รางวัลที่ 2<br/>มี 5 รางวัลๆละ 200,000 บาท
+                                                    <caption class="myDivH">
+                                                        <div class="md-text">ผลสลาก รางวัลที่ 2</div><br/><div class="sm-text">มี 5 รางวัลๆละ 200,000 บาท</div>
                                                     </caption>
                                                     <tbody>
                                                         <tr>
-                                                            <td><?php echo $dataNow[5][1]; ?></td>
-                                                            <td><?php echo $dataNow[5][2]; ?></td>
-                                                            <td><?php echo $dataNow[5][3]; ?></td>
-                                                            <td><?php echo $dataNow[5][4]; ?></td>
-                                                            <td><?php echo $dataNow[5][5]; ?></td>
+                                                            <td class="myDiv"><?php echo $dataNow[5][1]; ?></td>
+                                                            <td class="myDiv"><?php echo $dataNow[5][2]; ?></td>
+                                                            <td class="myDiv"><?php echo $dataNow[5][3]; ?></td>
+                                                            <td class="myDiv"><?php echo $dataNow[5][4]; ?></td>
+                                                            <td class="myDiv"><?php echo $dataNow[5][5]; ?></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
                                             <div class="table-responsive">
                                                 <table id="reward3" class="easy-table easy-table-default table">
-                                                    <caption>
-                                                        ผลสลาก รางวัลที่ 3<br/>มี 10 รางวัลๆละ 80,000 บาท
+                                                    <caption class="myDivH">
+                                                        <div class="md-text">ผลสลาก รางวัลที่ 3</div><br/><div class="sm-text">มี 10 รางวัลๆละ 80,000 บาท</div>
                                                     </caption>
                                                     <tbody>
                                                         <tr>
-                                                            <td><?php echo $dataNow[6][1]; ?></td>
-                                                            <td><?php echo $dataNow[6][2]; ?></td>
-                                                            <td><?php echo $dataNow[6][3]; ?></td>
-                                                            <td><?php echo $dataNow[6][4]; ?></td>
-                                                            <td><?php echo $dataNow[6][5]; ?></td>
+                                                            <td class="myDiv"><?php echo $dataNow[6][1]; ?></td>
+                                                            <td class="myDiv"><?php echo $dataNow[6][2]; ?></td>
+                                                            <td class="myDiv"><?php echo $dataNow[6][3]; ?></td>
+                                                            <td class="myDiv"><?php echo $dataNow[6][4]; ?></td>
+                                                            <td class="myDiv"><?php echo $dataNow[6][5]; ?></td>
                                                             
                                                         </tr>
                                                         <tr>
-                                                            <td><?php echo $dataNow[6][6]; ?></td>
-                                                            <td><?php echo $dataNow[6][7]; ?></td>
-                                                            <td><?php echo $dataNow[6][8]; ?></td>
-                                                            <td><?php echo $dataNow[6][9]; ?></td>
-                                                            <td><?php echo $dataNow[6][10]; ?></td>
+                                                            <td class="myDiv"><?php echo $dataNow[6][6]; ?></td>
+                                                            <td class="myDiv"><?php echo $dataNow[6][7]; ?></td>
+                                                            <td class="myDiv"><?php echo $dataNow[6][8]; ?></td>
+                                                            <td class="myDiv"><?php echo $dataNow[6][9]; ?></td>
+                                                            <td class="myDiv"><?php echo $dataNow[6][10]; ?></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
                                             <div class="table-responsive">
                                                 <table id="reward4" class="easy-table easy-table-default table">
-                                                    <caption>
-                                                        ผลสลาก รางวัลที่ 4<br/>มี 50 รางวัลๆละ 40,000 บาท
+                                                    <caption class="myDivH">
+                                                        <div class="md-text">ผลสลาก รางวัลที่ 4</div><br/><div class="sm-text">มี 50 รางวัลๆละ 40,000 บาท</div>
                                                     </caption>
                                                     <tbody>
                                                         <?php
                                                             for($i=0;$i<50;$i=$i+10){
                                                         ?>
                                                                     <tr>
-                                                                        <td><?php echo $dataNow[7][1+$i]; ?></td>
-                                                                        <td><?php echo $dataNow[7][2+$i]; ?></td>
-                                                                        <td><?php echo $dataNow[7][3+$i]; ?></td>
-                                                                        <td><?php echo $dataNow[7][4+$i]; ?></td>
-                                                                        <td><?php echo $dataNow[7][5+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[7][1+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[7][2+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[7][3+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[7][4+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[7][5+$i]; ?></td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td><?php echo $dataNow[7][6+$i]; ?></td>
-                                                                        <td><?php echo $dataNow[7][7+$i]; ?></td>
-                                                                        <td><?php echo $dataNow[7][8+$i]; ?></td>
-                                                                        <td><?php echo $dataNow[7][9+$i]; ?></td>
-                                                                        <td><?php echo $dataNow[7][10+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[7][6+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[7][7+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[7][8+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[7][9+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[7][10+$i]; ?></td>
                                                                     </tr>
                                                         <?php
                                                             }
@@ -306,40 +366,40 @@
                                             </div>
                                             <div class="table-responsive">
                                                 <table id="reward5" class="easy-table easy-table-default table">
-                                                    <caption>
-                                                        ผลสลาก รางวัลที่ 5<br/>มี 100 รางวัลๆละ 20,000 บาท
+                                                    <caption class="myDivH">
+                                                        <div class="md-text">ผลสลาก รางวัลที่ 5</div><br/><div class="sm-text">มี 100 รางวัลๆละ 20,000 บาท</div>
                                                     </caption>
                                                     <tbody>
                                                         <?php
                                                             for($i=0;$i<100;$i=$i+20){
                                                         ?>
                                                                     <tr>
-                                                                        <td><?php echo $dataNow[8][1+$i]; ?></td>
-                                                                        <td><?php echo $dataNow[8][2+$i]; ?></td>
-                                                                        <td><?php echo $dataNow[8][3+$i]; ?></td>
-                                                                        <td><?php echo $dataNow[8][4+$i]; ?></td>
-                                                                        <td><?php echo $dataNow[8][5+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[8][1+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[8][2+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[8][3+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[8][4+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[8][5+$i]; ?></td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td><?php echo $dataNow[8][6+$i]; ?></td>
-                                                                        <td><?php echo $dataNow[8][7+$i]; ?></td>
-                                                                        <td><?php echo $dataNow[8][8+$i]; ?></td>
-                                                                        <td><?php echo $dataNow[8][9+$i]; ?></td>
-                                                                        <td><?php echo $dataNow[8][10+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[8][6+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[8][7+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[8][8+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[8][9+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[8][10+$i]; ?></td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td><?php echo $dataNow[8][11+$i]; ?></td>
-                                                                        <td><?php echo $dataNow[8][12+$i]; ?></td>
-                                                                        <td><?php echo $dataNow[8][13+$i]; ?></td>
-                                                                        <td><?php echo $dataNow[8][14+$i]; ?></td>
-                                                                        <td><?php echo $dataNow[8][15+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[8][11+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[8][12+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[8][13+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[8][14+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[8][15+$i]; ?></td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td><?php echo $dataNow[8][16+$i]; ?></td>
-                                                                        <td><?php echo $dataNow[8][17+$i]; ?></td>
-                                                                        <td><?php echo $dataNow[8][18+$i]; ?></td>
-                                                                        <td><?php echo $dataNow[8][19+$i]; ?></td>
-                                                                        <td><?php echo $dataNow[8][20+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[8][16+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[8][17+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[8][18+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[8][19+$i]; ?></td>
+                                                                        <td class="myDiv"><?php echo $dataNow[8][20+$i]; ?></td>
                                                                     </tr>
                                                         <?php
                                                             }
